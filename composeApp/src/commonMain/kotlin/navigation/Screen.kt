@@ -9,4 +9,5 @@ sealed class Screen {
     object CargarCompeticion : Screen()
     object GenerarPoules : Screen()
 
+    object ResultadosPoules : Screen()
 }

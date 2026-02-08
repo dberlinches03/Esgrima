@@ -7,6 +7,7 @@ import ui.competicion.CrearCompeticionScreen
 import ui.login.LoginScreen
 import ui.menu.MenuPrincipalScreen
 import ui.poules.GenerarPoulesScreen
+import ui.resultados.ResultadosPoulesScreen
 import ui.tiradores.GestionTiradoresScreen
 
 @Composable
@@ -20,6 +21,7 @@ fun App() {
             Screen.GestionArbitros -> GestionArbitrosScreen(nav)
             Screen.CrearCompeticion -> CrearCompeticionScreen(nav)
             Screen.GenerarPoules -> GenerarPoulesScreen(nav)
+            Screen.ResultadosPoules -> ResultadosPoulesScreen(nav)
             else -> {TODO()}
         }
     }
