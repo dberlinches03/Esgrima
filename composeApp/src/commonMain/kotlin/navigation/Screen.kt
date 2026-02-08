@@ -7,4 +7,6 @@ sealed class Screen {
     object GestionArbitros : Screen()
     object CrearCompeticion : Screen()
     object CargarCompeticion : Screen()
+    object GenerarPoules : Screen()
+
 }
