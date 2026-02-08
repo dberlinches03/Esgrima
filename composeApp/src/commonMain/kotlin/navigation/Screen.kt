@@ -11,5 +11,9 @@ sealed class Screen {
 
     object ResultadosPoules : Screen()
 
+    object Clasificacion : Screen()
     object GenerarTablon: Screen()
+
+    object GuardarCargar : Screen()
+
 }

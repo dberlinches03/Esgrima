@@ -3,7 +3,11 @@ package ui.tiradores
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import esgrima.composeapp.generated.resources.Res
+import kotlinx.coroutines.launch
 import models.Tirador
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import repositories.TiradoresRepository
 
 class TiradoresViewModel(
@@ -14,13 +18,34 @@ class TiradoresViewModel(
     val jsonInput = mutableStateOf("")
 
     init {
-        // Cargar vacío al inicio
+        cargarDesdeRecursos()
+    }
+
+    @OptIn(ExperimentalResourceApi::class)
+    fun cargarDesdeRecursos() {
+        viewModelScope.launch {
+            try {
+                // Ruta actualizada a la subcarpeta 'files'
+                val bytes = Res.readBytes("files/tiradores.txt")
+                val json = bytes.decodeToString()
+                if (json.isNotBlank()) {
+                    cargarDesdeJson(json)
+                }
+            } catch (e: Exception) {
+                println("Error cargando tiradores: ${e.message}")
+            }
+        }
     }
 
     fun cargarDesdeJson(json: String) {
-        repo.loadFromJson(json)
-        tiradores.clear()
-        tiradores.addAll(repo.getAll())
+        try {
+            if (json.isBlank()) return
+            repo.loadFromJson(json)
+            tiradores.clear()
+            tiradores.addAll(repo.getAll())
+        } catch (e: Exception) {
+            println("Error al decodificar JSON de tiradores: ${e.message}")
+        }
     }
 
     fun eliminar(federateNumber: Int) {

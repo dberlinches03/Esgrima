@@ -17,8 +17,14 @@ kotlin {
         }
     }
     
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
     
+    // Comentados temporalmente para evitar errores con el módulo :shared
+    /*
     js {
         browser()
         binaries.executable()
@@ -29,6 +35,7 @@ kotlin {
         browser()
         binaries.executable()
     }
+    */
     
     sourceSets {
         androidMain.dependencies {
@@ -36,11 +43,11 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(project(":shared"))
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
             implementation(libs.compose.ui)
-            implementation(project(":shared"))
             implementation(libs.compose.components.resources)
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
@@ -85,7 +92,6 @@ android {
 
 dependencies {
     debugImplementation(libs.compose.uiTooling)
-    implementation(project(":shared"))
 }
 
 compose.desktop {

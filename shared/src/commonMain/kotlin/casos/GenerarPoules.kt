@@ -1,9 +1,6 @@
 package casos
 
 import models.*
-import kotlin.random.Random
-import kotlin.time.Clock
-
 class GenerarPoules {
 
     fun execute(

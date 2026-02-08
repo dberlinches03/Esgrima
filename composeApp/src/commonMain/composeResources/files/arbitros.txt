@@ -1,0 +1,155 @@
+[{
+  "firstName": "Juan",
+  "lastName": "Ramirez",
+  "gender": "masculino",
+  "age": 24,
+  "federateNumber": 2001,
+  "club": "Club de Esgrima Valencia",
+  "country": "España",
+  "modality": ["espada", "sable", "florete"],
+  "address": {
+    "streetAddress": "Udhna",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "95221"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "27627"
+    }
+  ]
+},
+{
+  "firstName": "Juan",
+  "lastName": "Ramos",
+  "gender": "masculino",
+  "age": 32,
+  "federateNumber": 2317,
+  "club": "Club de Esgrima Valencia",
+  "country": "España",
+  "modality": ["espada", "sable", "florete"],
+  "address": {
+    "streetAddress": "Udhna",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "95221"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "27627"
+    }
+  ]
+},
+{
+  "firstName": "Maria",
+  "lastName": "Ramirez",
+  "gender": "masculino",
+  "age": 18,
+  "federateNumber": 2101,
+  "club": "Club de Esgrima Alicante",
+  "country": "España",
+  "modality": ["espada", "sable", "florete"],
+  "address": {
+    "streetAddress": "Udhna",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "95221"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "27627"
+    }
+  ]
+},
+{
+  "firstName": "Juan",
+  "lastName": "Rodriguez",
+  "gender": "masculino",
+  "age": 45,
+  "federateNumber": 1015,
+  "club": "Club de Esgrima Alicante",
+  "country": "España",
+  "modality": ["sable", "florete"],
+  "address": {
+    "streetAddress": "Udhna",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "95221"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "27627"
+    }
+  ]
+},
+{
+  "firstName": "Juan",
+  "lastName": "Random",
+  "gender": "masculino",
+  "age": 42,
+  "federateNumber": 1021,
+  "club": "Club de Esgrima Mislata",
+  "country": "España",
+  "modality": ["espada", "sable"],
+  "address": {
+    "streetAddress": "Udhna",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "95221"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "27627"
+    }
+  ]
+},
+{
+  "firstName": "Juanito",
+  "lastName": "Palotes",
+  "gender": "masculino",
+  "age": 29,
+  "federateNumber": 2198,
+  "club": "Sala de Armas de Valencia",
+  "country": "España",
+  "modality": ["espada", "sable", "florete"],
+  "address": {
+    "streetAddress": "Udhna",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "95221"
+  },
+  "phoneNumbers": [
+    {
+      "type": "movil",
+      "number": "66527627"
+    }
+  ]
+},
+{
+  "firstName": "Rodrigo",
+  "lastName": "Rodriguez",
+  "gender": "masculino",
+  "age": 64,
+  "federateNumber": 21,
+  "club": "Club de Esgrima Almassora",
+  "country": "España",
+  "modality": ["espada", "sable", "florete"],
+  "address": {
+    "streetAddress": "Udhna",
+    "city": "San Jone",
+    "state": "CA",
+    "postalCode": "95221"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "27627"
+    }
+  ]
+}
+]

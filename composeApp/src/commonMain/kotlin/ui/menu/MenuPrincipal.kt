@@ -35,5 +35,9 @@ fun MenuPrincipalScreen(nav: NavigationState) {
         Button(onClick = { nav.navigateTo(Screen.CargarCompeticion) }) {
             Text("Cargar Competición")
         }
+
+        Button(onClick = { nav.navigateTo(Screen.GuardarCargar) }) {
+            Text("Guardar / Cargar Competición")
+        }
     }
 }
