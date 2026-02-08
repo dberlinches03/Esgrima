@@ -10,4 +10,6 @@ sealed class Screen {
     object GenerarPoules : Screen()
 
     object ResultadosPoules : Screen()
+
+    object GenerarTablon: Screen()
 }
