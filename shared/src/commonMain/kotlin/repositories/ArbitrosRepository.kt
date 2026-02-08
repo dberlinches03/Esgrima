@@ -5,7 +5,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import models.Arbitro
 
-class ArbitrosRepository {
+object ArbitrosRepository {
 
     private val arbitros = mutableListOf<Arbitro>()
 

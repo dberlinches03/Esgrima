@@ -4,8 +4,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import models.Tirador
 
-class TiradoresRepository {
-
+object TiradoresRepository {
     private val tiradores = mutableListOf<Tirador>()
 
     fun getAll(): List<Tirador> = tiradores

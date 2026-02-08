@@ -10,9 +10,7 @@ import models.Arbitro
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import repositories.ArbitrosRepository
 
-class ArbitrosViewModel(
-    private val repo: ArbitrosRepository = ArbitrosRepository()
-): ViewModel() {
+class ArbitrosViewModel : ViewModel() {
 
     val arbitros = mutableStateListOf<Arbitro>()
     val jsonInput = mutableStateOf("")
@@ -25,7 +23,6 @@ class ArbitrosViewModel(
     fun cargarDesdeRecursos() {
         viewModelScope.launch {
             try {
-                // Ruta actualizada a la subcarpeta 'files'
                 val bytes = Res.readBytes("files/arbitros.txt")
                 val json = bytes.decodeToString()
                 if (json.isNotBlank()) {
@@ -40,26 +37,27 @@ class ArbitrosViewModel(
     fun cargarDesdeJson(json: String) {
         try {
             if (json.isBlank()) return
-            repo.loadFromJson(json)
+            // Usamos ArbitrosRepository directamente (sin paréntesis)
+            ArbitrosRepository.loadFromJson(json)
             arbitros.clear()
-            arbitros.addAll(repo.getAll())
+            arbitros.addAll(ArbitrosRepository.getAll())
         } catch (e: Exception) {
             println("Error al decodificar JSON de árbitros: ${e.message}")
         }
     }
 
     fun eliminar(federateNumber: Int) {
-        repo.delete(federateNumber)
+        ArbitrosRepository.delete(federateNumber)
         arbitros.removeAll { it.federateNumber == federateNumber }
     }
 
     fun añadir(arbitro: Arbitro) {
-        repo.add(arbitro)
+        ArbitrosRepository.add(arbitro)
         arbitros.add(arbitro)
     }
 
     fun actualizar(federateNumber: Int, nuevo: Arbitro) {
-        repo.update(federateNumber, nuevo)
+        ArbitrosRepository.update(federateNumber, nuevo)
         val index = arbitros.indexOfFirst { it.federateNumber == federateNumber }
         if (index != -1) arbitros[index] = nuevo
     }

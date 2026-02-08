@@ -3,16 +3,16 @@ package ui.competicion
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import esgrima.composeapp.generated.resources.Res
+import kotlinx.coroutines.launch
 import models.*
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import repositories.ArbitrosRepository
 import repositories.CompeticionRepository
 import repositories.TiradoresRepository
 
-class CrearCompeticionViewModel(
-    private val tirRepo: TiradoresRepository = TiradoresRepository(),
-    private val arbRepo: ArbitrosRepository = ArbitrosRepository(),
-    private val compRepo: CompeticionRepository = CompeticionRepository()
-): ViewModel() {
+class CrearCompeticionViewModel : ViewModel() {
 
     val nombre = mutableStateOf("")
     val entidadOrganizadora = mutableStateOf("")
@@ -27,9 +27,48 @@ class CrearCompeticionViewModel(
     val arbitrosSeleccionados = mutableStateListOf<Arbitro>()
 
     init {
-        // Cargar datos iniciales si ya existen
-        tiradores.addAll(tirRepo.getAll())
-        arbitros.addAll(arbRepo.getAll())
+        cargarDatos()
+    }
+
+    private fun cargarDatos() {
+        // Primero sincronizamos con lo que ya tengan los repositorios (Singletons)
+        actualizarListasDesdeRepos()
+
+        // Si después de sincronizar siguen vacíos, cargamos de archivos
+        if (tiradores.isEmpty() || arbitros.isEmpty()) {
+            forzarCargaDesdeRecursos()
+        }
+    }
+
+    private fun actualizarListasDesdeRepos() {
+        tiradores.clear()
+        tiradores.addAll(TiradoresRepository.getAll())
+        arbitros.clear()
+        arbitros.addAll(ArbitrosRepository.getAll())
+    }
+
+    @OptIn(ExperimentalResourceApi::class)
+    private fun forzarCargaDesdeRecursos() {
+        viewModelScope.launch {
+            try {
+                // Cargar Tiradores de archivo si el repo está vacío
+                if (TiradoresRepository.getAll().isEmpty()) {
+                    val tBytes = Res.readBytes("files/tiradores.txt")
+                    TiradoresRepository.loadFromJson(tBytes.decodeToString())
+                }
+                
+                // Cargar Árbitros de archivo si el repo está vacío
+                if (ArbitrosRepository.getAll().isEmpty()) {
+                    val aBytes = Res.readBytes("files/arbitros.txt")
+                    ArbitrosRepository.loadFromJson(aBytes.decodeToString())
+                }
+
+                // Sincronizar UI final
+                actualizarListasDesdeRepos()
+            } catch (e: Exception) {
+                println("Error cargando recursos en CrearCompeticionViewModel: ${e.message}")
+            }
+        }
     }
 
     fun toggleTirador(t: Tirador) {
@@ -53,7 +92,7 @@ class CrearCompeticionViewModel(
             arbitros = arbitrosSeleccionados.toList()
         )
 
-        compRepo.set(comp)
+        CompeticionRepository.set(comp)
         return comp
     }
 }

@@ -6,15 +6,14 @@ import androidx.lifecycle.ViewModel
 import models.*
 import repositories.CompeticionRepository
 
-class ResultadosPoulesViewModel(
-    private val compRepo: CompeticionRepository = CompeticionRepository()
-) : ViewModel() {
+class ResultadosPoulesViewModel : ViewModel() {
 
     val competicion = mutableStateOf<Competicion?>(null)
     val poules = mutableStateListOf<Poule>()
 
     init {
-        competicion.value = compRepo.get()
+        // Usar el Singleton directamente
+        competicion.value = CompeticionRepository.get()
         competicion.value?.poules?.let { poules.addAll(it) }
     }
 
@@ -42,7 +41,7 @@ class ResultadosPoulesViewModel(
     private fun guardarCambios() {
         val comp = competicion.value ?: return
         val nuevaComp = comp.copy(poules = poules.toList())
-        compRepo.set(nuevaComp)
+        CompeticionRepository.set(nuevaComp)
         competicion.value = nuevaComp
     }
 }

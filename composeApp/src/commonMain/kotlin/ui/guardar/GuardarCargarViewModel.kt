@@ -1,33 +1,48 @@
 package ui.guardar
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
 import models.Competicion
+import org.example.esgrima.FilePicker
 import repositories.CompeticionRepository
-import casos.CargarCompeticion
-import casos.GuardarCompeticion
 
-class GuardarCargarViewModel(
-    private val compRepo: CompeticionRepository = CompeticionRepository(),
-    private val guardarUseCase: GuardarCompeticion = GuardarCompeticion(),
-    private val cargarUseCase: CargarCompeticion = CargarCompeticion()
-) {
+class GuardarCargarViewModel : ViewModel() {
 
-    val competicion = mutableStateOf<Competicion?>(null)
     val jsonOutput = mutableStateOf("")
     val jsonInput = mutableStateOf("")
+    val competicion = mutableStateOf<Competicion?>(null)
+    
+    private val filePicker = FilePicker()
 
     init {
-        competicion.value = compRepo.get()
+        actualizarEstado()
+    }
+
+    private fun actualizarEstado() {
+        competicion.value = CompeticionRepository.get()
+    }
+
+    fun guardarEnArchivo() {
+        val json = CompeticionRepository.saveToJson()
+        filePicker.saveFile(json, "competicion.json")
+    }
+
+    fun cargarDesdeArchivo() {
+        val json = filePicker.readFile()
+        if (json != null) {
+            CompeticionRepository.loadFromJson(json)
+            actualizarEstado()
+        }
     }
 
     fun guardar() {
-        val comp = competicion.value ?: return
-        jsonOutput.value = guardarUseCase.execute(comp)
+        jsonOutput.value = CompeticionRepository.saveToJson()
     }
 
     fun cargar() {
-        val comp = cargarUseCase.execute(jsonInput.value)
-        compRepo.set(comp)
-        competicion.value = comp
+        if (jsonInput.value.isNotBlank()) {
+            CompeticionRepository.loadFromJson(jsonInput.value)
+            actualizarEstado()
+        }
     }
 }
