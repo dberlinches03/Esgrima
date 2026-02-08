@@ -1,0 +1,10 @@
+package navigation
+
+sealed class Screen {
+    object Login : Screen()
+    object MenuPrincipal : Screen()
+    object GestionTiradores : Screen()
+    object GestionArbitros : Screen()
+    object CrearCompeticion : Screen()
+    object CargarCompeticion : Screen()
+}

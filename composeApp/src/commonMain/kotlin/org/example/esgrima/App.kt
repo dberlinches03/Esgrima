@@ -1,28 +1,25 @@
-package org.example.esgrima
-
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.resources.painterResource
-
-import esgrima.composeapp.generated.resources.Res
-import esgrima.composeapp.generated.resources.compose_multiplatform
+import androidx.compose.runtime.Composable
+import navigation.NavigationState
+import navigation.Screen
+import ui.login.LoginScreen
+import ui.menu.MenuPrincipalScreen
+import ui.tiradores.GestionTiradoresScreen
 
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
-        Text("Esgrima Tournament - Versión Escritorio")
+        val nav = rememberNavigation()
+        when (nav.currentScreen) {
+            Screen.Login -> LoginScreen(nav)
+            Screen.MenuPrincipal -> MenuPrincipalScreen(nav)
+            Screen.GestionTiradores -> GestionTiradoresScreen(nav)
+            else -> {TODO()}
+        }
     }
+}
+
+@Composable
+fun rememberNavigation(): NavigationState {
+    return androidx.compose.runtime.remember { NavigationState() }
 }
