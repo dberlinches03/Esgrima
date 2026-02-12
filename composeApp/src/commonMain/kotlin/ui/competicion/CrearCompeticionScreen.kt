@@ -34,7 +34,6 @@ fun CrearCompeticionScreen(nav: NavigationState) {
             Text("Volver")
         }
 
-        // Formulario Principal en una Card
         Card(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 OutlinedTextField(value = vm.nombre.value, onValueChange = { vm.nombre.value = it }, label = { Text("Nombre de la competición") }, modifier = Modifier.fillMaxWidth())
@@ -71,7 +70,6 @@ fun CrearCompeticionScreen(nav: NavigationState) {
                             }
                         }
                     }
-                    // Se ha eliminado la VerticalScrollbar de aquí
                 }
             }
 
@@ -87,7 +85,6 @@ fun CrearCompeticionScreen(nav: NavigationState) {
                             }
                         }
                     }
-                    // Se ha eliminado la VerticalScrollbar de aquí
                 }
             }
         }
