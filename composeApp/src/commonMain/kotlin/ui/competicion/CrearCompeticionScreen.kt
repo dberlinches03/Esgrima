@@ -1,11 +1,9 @@
 package ui.competicion
 
-import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,9 +29,9 @@ fun CrearCompeticionScreen(nav: NavigationState) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text("Crear Nueva Competición", style = MaterialTheme.typography.headlineMedium)
-            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
-                Text("Volver")
-            }
+        }
+        Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
+            Text("Volver")
         }
 
         // Formulario Principal en una Card
@@ -41,7 +39,7 @@ fun CrearCompeticionScreen(nav: NavigationState) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 OutlinedTextField(value = vm.nombre.value, onValueChange = { vm.nombre.value = it }, label = { Text("Nombre de la competición") }, modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(value = vm.entidadOrganizadora.value, onValueChange = { vm.entidadOrganizadora.value = it }, label = { Text("Entidad Organizadora") }, modifier = Modifier.fillMaxWidth())
-                
+
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     OutlinedTextField(value = vm.fecha.value, onValueChange = { vm.fecha.value = it }, label = { Text("Fecha (DD/MM/AAAA)") }, modifier = Modifier.weight(1f))
                     OutlinedTextField(value = vm.lugar.value, onValueChange = { vm.lugar.value = it }, label = { Text("Lugar/Sede") }, modifier = Modifier.weight(1f))
@@ -65,7 +63,7 @@ fun CrearCompeticionScreen(nav: NavigationState) {
             Column(modifier = Modifier.weight(1f)) {
                 Text("Tiradores: ${vm.tiradoresSeleccionados.size} de ${vm.tiradores.size}", style = MaterialTheme.typography.titleMedium)
                 Box(modifier = Modifier.fillMaxSize().weight(1f)) {
-                    LazyColumn(state = tiradoresState, modifier = Modifier.fillMaxSize().padding(end = 12.dp)) {
+                    LazyColumn(state = tiradoresState, modifier = Modifier.fillMaxSize()) {
                         items(vm.tiradores) { t ->
                             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                                 Checkbox(checked = vm.tiradoresSeleccionados.contains(t), onCheckedChange = { vm.toggleTirador(t) })
@@ -73,10 +71,7 @@ fun CrearCompeticionScreen(nav: NavigationState) {
                             }
                         }
                     }
-                    VerticalScrollbar(
-                        modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
-                        adapter = rememberScrollbarAdapter(tiradoresState)
-                    )
+                    // Se ha eliminado la VerticalScrollbar de aquí
                 }
             }
 
@@ -84,7 +79,7 @@ fun CrearCompeticionScreen(nav: NavigationState) {
             Column(modifier = Modifier.weight(1f)) {
                 Text("Árbitros: ${vm.arbitrosSeleccionados.size} de ${vm.arbitros.size}", style = MaterialTheme.typography.titleMedium)
                 Box(modifier = Modifier.fillMaxSize().weight(1f)) {
-                    LazyColumn(state = arbitrosState, modifier = Modifier.fillMaxSize().padding(end = 12.dp)) {
+                    LazyColumn(state = arbitrosState, modifier = Modifier.fillMaxSize()) {
                         items(vm.arbitros) { a ->
                             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                                 Checkbox(checked = vm.arbitrosSeleccionados.contains(a), onCheckedChange = { vm.toggleArbitro(a) })
@@ -92,10 +87,7 @@ fun CrearCompeticionScreen(nav: NavigationState) {
                             }
                         }
                     }
-                    VerticalScrollbar(
-                        modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
-                        adapter = rememberScrollbarAdapter(arbitrosState)
-                    )
+                    // Se ha eliminado la VerticalScrollbar de aquí
                 }
             }
         }

@@ -1,13 +1,13 @@
 package ui.arbitros
 
-import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -51,7 +51,7 @@ fun GestionArbitrosScreen(nav: NavigationState) {
             LazyColumn(
                 state = state,
                 verticalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier.fillMaxSize().padding(end = 12.dp)
+                modifier = Modifier.fillMaxSize() // Se eliminó el padding extra de la derecha
             ) {
                 items(viewModel.arbitros) { arbitro ->
                     ArbitroItem(
@@ -61,10 +61,6 @@ fun GestionArbitrosScreen(nav: NavigationState) {
                 }
             }
 
-            VerticalScrollbar(
-                modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
-                adapter = rememberScrollbarAdapter(scrollState = state)
-            )
         }
     }
 }
