@@ -33,7 +33,7 @@ fun TablonScreen(nav: NavigationState) {
         Text("Tablón Eliminatorio", style = MaterialTheme.typography.bodyMedium)
 
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
+            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal (nav.currentUserRole)) }) {
                 Text("Volver")
             }
 

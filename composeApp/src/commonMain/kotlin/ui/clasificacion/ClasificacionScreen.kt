@@ -32,7 +32,7 @@ fun ClasificacionScreen(nav: NavigationState) {
         Text("Clasificación Final de Poules", style = MaterialTheme.typography.bodyMedium)
 
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
+            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal (nav.currentUserRole)) }) {
                 Text("Volver")
             }
 

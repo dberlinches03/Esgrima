@@ -27,7 +27,7 @@ fun GestionTiradoresScreen(nav: NavigationState) {
         Text("Gestión de Tiradores", style = MaterialTheme.typography.headlineMedium)
 
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
+            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal(nav.currentUserRole)) }) {
                 Text("Volver")
             }
             Button(onClick = { showAddDialog = true }) {

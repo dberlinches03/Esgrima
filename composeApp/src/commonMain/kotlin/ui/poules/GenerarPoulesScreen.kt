@@ -33,7 +33,7 @@ fun GenerarPoulesScreen(nav: NavigationState) {
 
         Text("Generación de Poules", style = MaterialTheme.typography.bodyMedium)
 
-        Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
+        Button(onClick = { nav.navigateTo(Screen.MenuPrincipal(nav.currentUserRole)) }) {
             Text("Volver")
         }
 

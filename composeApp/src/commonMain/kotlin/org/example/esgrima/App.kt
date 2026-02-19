@@ -1,8 +1,6 @@
 package org.example.esgrima
 
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import navigation.NavigationState
 import navigation.Screen
@@ -21,18 +19,19 @@ import ui.tiradores.GestionTiradoresScreen
 fun App() {
     MaterialTheme {
         val nav = rememberNavigation()
-        when (nav.currentScreen) {
-            Screen.Login -> LoginScreen(nav)
-            Screen.MenuPrincipal -> MenuPrincipalScreen(nav)
-            Screen.GestionTiradores -> GestionTiradoresScreen(nav)
-            Screen.GestionArbitros -> GestionArbitrosScreen(nav)
-            Screen.CrearCompeticion -> CrearCompeticionScreen(nav)
-            Screen.GenerarPoules -> GenerarPoulesScreen(nav)
-            Screen.ResultadosPoules -> ResultadosPoulesScreen(nav)
-            Screen.Clasificacion -> ClasificacionScreen(nav)
-            Screen.GenerarTablon -> TablonScreen(nav)
-            Screen.GuardarCargar -> GuardarCargarScreen(nav)
-            else -> LoginScreen(nav) 
+        
+        when (val current = nav.currentScreen) {
+            is Screen.Login -> LoginScreen(nav)
+            is Screen.MenuPrincipal -> MenuPrincipalScreen(nav, current.userRole)
+            is Screen.GestionTiradores -> GestionTiradoresScreen(nav)
+            is Screen.GestionArbitros -> GestionArbitrosScreen(nav)
+            is Screen.CrearCompeticion -> CrearCompeticionScreen(nav)
+            is Screen.GenerarPoules -> GenerarPoulesScreen(nav)
+            is Screen.ResultadosPoules -> ResultadosPoulesScreen(nav)
+            is Screen.Clasificacion -> ClasificacionScreen(nav)
+            is Screen.GenerarTablon -> TablonScreen(nav)
+            is Screen.GuardarCargar -> GuardarCargarScreen(nav)
+            else -> LoginScreen(nav)
         }
     }
 }

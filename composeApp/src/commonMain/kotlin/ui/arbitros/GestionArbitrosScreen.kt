@@ -29,7 +29,7 @@ fun GestionArbitrosScreen(nav: NavigationState) {
         Text("Gestión de Árbitros", style = MaterialTheme.typography.headlineMedium)
 
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
+            Button(onClick = { nav.navigateTo(Screen.MenuPrincipal(nav.currentUserRole)) }) {
                 Text("Volver")
             }
             Button(onClick = { showAddDialog = true }) {

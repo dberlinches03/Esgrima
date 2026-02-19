@@ -30,7 +30,7 @@ fun CrearCompeticionScreen(nav: NavigationState) {
         ) {
             Text("Crear Nueva Competición", style = MaterialTheme.typography.headlineMedium)
         }
-        Button(onClick = { nav.navigateTo(Screen.MenuPrincipal) }) {
+        Button(onClick = { nav.navigateTo(Screen.MenuPrincipal(nav.currentUserRole)) }) {
             Text("Volver")
         }
 
