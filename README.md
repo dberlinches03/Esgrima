@@ -1,7 +1,8 @@
 This is a Kotlin Multiplatform project targeting Android, Web, Desktop (JVM).
 
 
-Esta línea la añado yo, para que pueda compilar correctamente el modo escritorio utilizamos el siguiente comando ./gradlew :composeApp:run valido en linux y windows
+Esta línea la añado yo, para que pueda compilar correctamente el modo escritorio utilizamos el siguiente comando .\gradlew.bat :composeApp:run para compilar en Windows
+Para compilar en linux ./gradlew :composeApp:run
 
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
